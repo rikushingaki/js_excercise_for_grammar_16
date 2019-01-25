@@ -10,10 +10,29 @@
 //     - https://tsuyopon.xyz/learning-contents/web-dev/javascript/frontend/how-to-use-the-fetch-api-in-js/
 //   - MDN : fetch
 //     - https://developer.mozilla.org/ja/docs/Web/API/WindowOrWorkerGlobalScope/fetch
+const END_POINT = 'https://opentdb.com/api.php?amount=10';
+class QuizFetcher {
+  static fetchMultipleQuizData() {
+    const url = `${END_POINT}&type=multiple`;
+    return fetch(url).then(response => response.json());
+  }
 
+  static fetchTrueOrFalseQuizData() {
+    const url = `${END_POINT}&type=boolean`;
+    return fetch(url).then(response => response.json());
+  }
+}
 
 // 課題2: fetchMultipleQuizDataメソッドを実行してAPIの結果に含まれるresultsプロパティの値をconsole.logで出力する
-
+QuizFetcher
+  .fetchMultipleQuizData()
+  .then(data => {
+    console.log('課題2の解答 : ', data.results);
+  });
 
 // 課題3: fetchTrueOrFalseQuizDataメソッドを実行してAPIの結果に含まれるresultsプロパティの値をconsole.logで出力する
-
+QuizFetcher
+  .fetchTrueOrFalseQuizData()
+  .then(data => {
+    console.log('課題3の解答 : ', data.results);
+  });
